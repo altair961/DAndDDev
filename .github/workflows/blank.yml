@@ -62,14 +62,14 @@ jobs:
         run: rsync -avz ./dist/ ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/home/zellwk/zellwk.com/dist/
 
   # This a job called "tests"
-  tests:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
+  # tests:
+  #   needs: build
+  #   runs-on: ubuntu-latest
+  #   steps:
 
-      - uses: actions/download-artifact@v3
-        with:
-          name: sources
-      - run: dotnet build
-      - name: run tests for Api
-        run: dotnet test "Restaurant.RestApi.Tests/Restaurant.RestApi.Tests.csproj" --no-build --no-restore
+  #     - uses: actions/download-artifact@v3
+  #       with:
+  #         name: sources
+  #     - run: dotnet build
+  #     - name: run tests for Api
+  #       run: dotnet test "Restaurant.RestApi.Tests/Restaurant.RestApi.Tests.csproj" --no-build --no-restore
