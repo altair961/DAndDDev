@@ -60,11 +60,11 @@ jobs:
       #       key: ${{ secrets.SSH_PRIVATE_KEY }}
       #       known_hosts: 'unnecessary'
 
-      # - name: Adding Known Hosts
-      #   run: ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
+      - name: Adding Known Hosts
+        run: ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
 
-      # - name: Deploy with rsync
-      #   run: rsync -avz ./dist/ ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/home/zellwk/zellwk.com/dist/
+      - name: Deploy with rsync
+        run: rsync -avz ./dist/ ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/home/zellwk/zellwk.com/dist/
 
   # This a job called "tests"
   # tests:
