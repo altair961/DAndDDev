@@ -42,7 +42,7 @@ jobs:
       - uses: actions/upload-artifact@v2
         with:
           name: artifact
-          path: dist
+          path: .
 
       # # Runs a single command using the runners shell
       # - name: Run a one-line script
