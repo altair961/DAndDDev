@@ -38,7 +38,8 @@ jobs:
 
       - name: build
         run: dotnet build Restaurant --configuration release
-
+  deploy:
+      steps:
       - name: Install SSH Key
         uses: shimataro/ssh-key-action@v2
         with:
@@ -49,7 +50,8 @@ jobs:
         run: ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
         
       - name: Deploy with rsync
-        run: rsync -avz -e "ssh -p ${{ secrets.SSH_PORT }}" . ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/home/renat/ciTarget
+        run: rsync -avz -e "ssh -p ${{ secrets.SSH_PORT }}" . ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/home/renat/cdTarget
+
 
       # - uses: actions/upload-artifact@v2
       #   with:
