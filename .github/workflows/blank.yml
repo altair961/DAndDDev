@@ -38,10 +38,20 @@ jobs:
 
       - name: build
         run: dotnet build Restaurant --configuration release
+        
+      - uses: actions/upload-artifact@v2
+        with:
+          name: artifact
+          path: Restaurant
+
   deploy:
     needs: build
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/download-artifact@v2
+        with:
+          name: artifact
+          
       - name: Install SSH Key
         uses: shimataro/ssh-key-action@v2
         with:
