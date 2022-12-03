@@ -39,9 +39,9 @@ jobs:
       - name: build
         run: dotnet build Restaurant --configuration release
   deploy:
-  needs: build
-  runs-on: ubuntu-latest
-      steps:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
       - name: Install SSH Key
         uses: shimataro/ssh-key-action@v2
         with:
