@@ -38,6 +38,7 @@ jobs:
 
       - name: build
         run: dotnet build Restaurant --configuration release
+        
   deploy:
       steps:
       - name: Install SSH Key
