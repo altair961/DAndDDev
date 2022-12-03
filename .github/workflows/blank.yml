@@ -44,14 +44,28 @@ jobs:
           name: artifact
           path: Restaurant
 
-  deploy:
+  # This a job called "tests"
+  tests:
     needs: build
+    runs-on: ubuntu-latest
+    steps:
+
+      - uses: actions/download-artifact@v3
+        with:
+          name: sources
+      - run: dotnet build
+      - name: run tests for Api
+        run: dotnet test "Restaurant.RestApi.Tests/Restaurant.RestApi.Tests.csproj" --no-build --no-restore
+  
+  # This a job called "deploy" 
+  deploy:
+    needs: tests
     runs-on: ubuntu-latest
     steps:
       - uses: actions/download-artifact@v2
         with:
           name: artifact
-          
+
       - name: Install SSH Key
         uses: shimataro/ssh-key-action@v2
         with:
